@@ -8,26 +8,54 @@
 </head>
 <body>
     
-        {{link.name}}-->{{link.address}}</br>
+        <div class="container">
+            <div class="row m-5">
+                <div class="col-md-4">
+                    <form method="POST" action="/">
+                        {% csrf_token%}
+                        <input class="form-control" name="site" type="text" id="site" placeholder="Enter site address">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" type="submit">Scrape</button>
+
+                    </div>
+                    </form>
+                    <div class="col-md-6">
+                        <a class="btn btn-warning" href="/delete">Delete</a>
+
+                    </div>
+                
+
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Link</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for link in data %}
+                          <tr>
+                            <td>{{link.id}}</td>
+                            <td>{{link.name}}</td>
+                            <td>{{link.address}}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+
+                </div>
+
+            </div>
+
+        </div>
+       
     
 
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Link</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for link in data %}
-          <tr>
-            <td>{{link.id}}</td>
-            <td>{{link.name}}</td>
-            <td>{{link.address}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    
 </body>
 </html>
