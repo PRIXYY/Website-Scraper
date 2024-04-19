@@ -8,7 +8,7 @@ from .models import Link
 def scrape(request):
     if request.method == "POST":
         site = request.POST.get('site','')
-        page = requests.get('https://www.facebook.com')
+        page = requests.get(site)
         soup = BeautifulSoup(page.text,'html.parser')
 
     
@@ -24,3 +24,6 @@ def scrape(request):
 
     return render(request,'myapp/result.html',{'data':data})
 
+def clear(request):
+    Link.objects.all().delete()
+    return render(request,'myapp/result.html')
